@@ -10,7 +10,12 @@ import {
   PlacedReward,
 } from "./dragstyles";
 
-const initialState = [{ name: "r2", location: "r2c3", bgcolor: "yellow" }] ;
+const initialState = [{ name: "r2", location: "r2c3", bgcolor: "yellow", key:"1" }] ;
+
+// consider initializing state as an object with the key value being the key to the data
+// that way on the deletes, you can reference the object key and delete
+// may need to change eyour render methods to accomodate that.
+// objects get a key when they are added to the placed grid
 
 const rewards = [
      { name: "r1", category: "c1", bgcolor: "green"},
@@ -54,9 +59,11 @@ export default class DragAndDrop extends React.Component{
         ev.preventDefault()
     }
 
-    onDragStart(ev, id) {
-        console.log('dragstart:', id);
+    onDragStart(ev, id, key) {
+        console.log('dragstart:', id, 'key:', key);
+        
         ev.dataTransfer.setData("id", id)
+        ev.dataTransfer.setData("key", key)
     }
 
     onDrop(ev, cat) {
@@ -67,6 +74,12 @@ export default class DragAndDrop extends React.Component{
 
         //need to add logic to remove the current value and move it to the new location
         // if it already exists in state
+
+
+        // if (state.stateRewards.id){
+        // change the location do the nw location
+        // }
+
         const colors = {
           r1: "green",
           r2: "yellow",
@@ -76,8 +89,11 @@ export default class DragAndDrop extends React.Component{
         };
 
         let id = ev.dataTransfer.getData("id")
+        let key = Date.now()
 
-        let newReward = {name: id, location: `${id}${cat}`, bgcolor: colors[id]}
+        
+
+        let newReward = {name: id, location: `${id}${cat}`, bgcolor: colors[id], key: key}
         // let tasks = this.state.tasks.filter(task => {
         //     if (task.name === id) {
         //         task.category = cat
@@ -106,10 +122,10 @@ export default class DragAndDrop extends React.Component{
 
        const styledrewards =  rewards.map( item => {
           
-        let key = Date.now();
+       
         return (
           <RewardBox
-            key={key}
+            key={item.name}
             color={item.bgcolor}
             location={item.name}
             draggable
@@ -134,13 +150,13 @@ export default class DragAndDrop extends React.Component{
         // })
 
         const placedReward = this.state.stateRewards.map((reward) => {
-          let key = Date.now()
+          
             return (
             <PlacedReward location={reward.location}
-                key={key}
+                key={reward.key}
                 color={reward.bgcolor}
                 draggable
-                onDragStart={e=> this.onDragStart(e,reward.name)}
+                onDragStart={e=> this.onDragStart(e,reward.name, reward.key)}
                 
             >
               {reward.name}
@@ -164,8 +180,8 @@ export default class DragAndDrop extends React.Component{
               onDragOver={(e) => this.onDragOver(e)}
               onDrop={(e) => this.onDrop(e, "c1")}
             >
-              C1
-              {/* <span className="category">C1</span> */}
+              
+              <span className="category">C1</span>
             </CategoryColumn>
 
             <CategoryColumn
