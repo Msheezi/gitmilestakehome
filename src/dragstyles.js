@@ -15,6 +15,8 @@ export const MainContainer = styled.div`
            "r4 . r4c1 r4c2 r4c3 r4c4 r4c5"
            "r5 . r5c1 r5c2 r5c3 r5c4 r5c5";
        `;
+       //update your column widths and grid gaps
+       // add in the barriers between columns
 
 export const RewardsContainer = styled.div`
   /* display: flex;
@@ -59,4 +61,6 @@ export const PlacedReward = styled.div`
          background-color: ${(props)=> props.color};
          grid-area: ${(props)=> props.location};
          text-align: center;
+         height: 100px;
+         width:100px;
        `;

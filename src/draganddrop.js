@@ -2,7 +2,7 @@ import React from 'react'
 
 import {
   MainContainer,
-  RewardsContainer,
+ 
   RewardBox,
   Title,
   CategoriesContainer,
@@ -54,6 +54,9 @@ export default class DragAndDrop extends React.Component{
         // ]
 
     }
+
+    // component did mount to retrieve from local storage
+    //component will unmount to save state to local storage
     
     onDragOver(ev) {
         ev.preventDefault()
@@ -67,61 +70,46 @@ export default class DragAndDrop extends React.Component{
     }
 
     onDrop(ev, cat) {
-        // get the data and create an object to add to state
-        // grab the drop location and the r name, concat and create the object
-        // render in the correct location
-
-
-        //need to add logic to remove the current value and move it to the new location
-        // if it already exists in state
-
-
-        // if (state.stateRewards.id){
-        // change the location do the nw location
-        // }
-
-        const colors = {
-          r1: "green",
-          r2: "yellow",
-          r3: "pink",
-          r4: "skyblue",
-          r5: "orange",
-        };
+        
+        /*
+        1. Get the values from the on drag start
+        2. set my updated flag - using this to control whether I am changing a 
+        location on an existing object in state or creating a new object in state
+        3a. if I am changing an existing value, update state with the copied values
+        3b. If object is not found, create a new object and update state with the new object
+        */
 
         let id = ev.dataTransfer.getData("id")
-        let key = Date.now()
-
+        let key = ev.dataTransfer.getData("key") 
+        let myState = this.state.stateRewards
         
-
-        let newReward = {name: id, location: `${id}${cat}`, bgcolor: colors[id], key: key}
-        // let tasks = this.state.tasks.filter(task => {
-        //     if (task.name === id) {
-        //         task.category = cat
-        //     }
-        //     return task
-        // })
-        let newState = this.state.stateRewards.push(newReward)
-        this.setState({
-            newState
+        let updated = false
+        myState.forEach( obj => {
+          if (obj.key === key){
+            obj.location = `${id}${cat}`
+            updated = true
+          }
         })
+
+        if (updated){
+          this.setState({stateRewards : myState})
+        } else if (!updated) {
+          const placedReward = { name: id, location: `${id}${cat}`, bgcolor: colors[id], key: key }
+          myState.push(placedReward)
+          this.setState({stateRewards: myState})
+        }
+        
+        
     }
-
-
 
     render(){
 
-        const items = {
-            c1: [],
-            c2: [],
-            c3: [],
-            c4: [],
-            c5: [],
-            // when you push the items into the array, update the gridarea prop with the proper grid area location
-            // grid-area: category or something like that
-        }
 
        const styledrewards =  rewards.map( item => {
-          
+          /*
+            this function is reading the rewards array and creating the starting items from 
+            which users will drag a reward to a category
+          */
        
         return (
           <RewardBox
@@ -129,28 +117,18 @@ export default class DragAndDrop extends React.Component{
             color={item.bgcolor}
             location={item.name}
             draggable
-            onDragStart={(e) => this.onDragStart(e, item.name)}
+            onDragStart={(e) => this.onDragStart(e, item.name, Date.now())}
           >
             {item.name}
           </RewardBox>
         );
         })
 
-        // this.state.items.forEach(item=> {
-        //     items[item.category].push(
-        //         <div
-        //             key={item.name}
-        //             draggable 
-        //             className="draggable"
-        //             onDragStart={e=>this.onDragStart(e,item.name)}
-        //         >{item.name}
-        //         {/* need to put the rewards here for grabbing */}
-        //         </div>
-        //     )
-        // })
-
+        
         const placedReward = this.state.stateRewards.map((reward) => {
-          
+          /*
+            this function is reading state for any placed rewards and creating dom nodes to attached the values to
+          */
             return (
             <PlacedReward location={reward.location}
                 key={reward.key}
@@ -190,7 +168,7 @@ export default class DragAndDrop extends React.Component{
               onDragOver={(e) => this.onDragOver(e)}
               onDrop={(e) => this.onDrop(e, "c2")}
             >
-              C2
+              <span className="category">C2</span>
             </CategoryColumn>
 
             <CategoryColumn
@@ -219,14 +197,7 @@ export default class DragAndDrop extends React.Component{
             >
               <span className="category">C5</span>
             </CategoryColumn>
-            {/* <div 
-            style={{
-                backgroundColor: "red"
-                , height: "100px"
-                , width: "100px"
-                , gridArea: "r2c2"}}
-            >Test
-            </div> */}
+            
             
             {placedReward}
           </MainContainer>
