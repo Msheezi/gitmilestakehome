@@ -3,6 +3,7 @@ export const ADD_REWARD = "ADD_REWARD"
 export const UNDO_REWARD = "UNDO_REWARD"
 export const REDO_REWARD = "REDO_REWARD"
 export const DELETE_REWARD = "DELETE_REWARD"
+export const UPDATE_REWARD = "UPDATE_REWARD"
 
  const addReward = (reward) => ({
     type: ADD_REWARD,
@@ -21,5 +22,13 @@ export const DELETE_REWARD = "DELETE_REWARD"
   key,
 });
 
-export const updateReward = (reward) => dispatchEvent(addReward(reward))
-export const removeReward = (key) => dispatchEvent(deleteReward(key))
+const moveReward = (id, key, cat) => ({
+    type: UPDATE_REWARD,
+    id,
+    key,
+    cat
+})
+
+export const updateReward = (reward) => addReward(reward)
+export const removeReward = (key) => deleteReward(key)
+export const movingReward = (id,key,cat)=> moveReward(id, key,cat)

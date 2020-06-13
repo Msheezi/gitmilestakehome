@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let store = configureStore()
   store.subscribe(() => {
     saveState({
-      rewards: store.getState.rewards
+      rewards: store.getState().rewards
     })})
 
     window.getState = store.getState
