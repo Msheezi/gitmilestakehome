@@ -67,7 +67,7 @@ export default class DragAndDrop extends React.Component{
     componentWillUnmount(){
       if (this.state.stateRewards.length === 0){
         // localStorage.removeItem("savedState")
-        localStorage.clear()
+        window.localStorage.clear()
       } else  {
         let stuff = localStorage.setItem("savedState", JSON.stringify(this.state.stateRewards))
         localStorage.setItem("savedState", stuff)
@@ -75,10 +75,14 @@ export default class DragAndDrop extends React.Component{
     }
 
     saveToStorage(){
-      localStorage.setItem(
-        "savedState",
-        JSON.stringify(this.state.stateRewards)
-      );
+
+      if(this.state.stateRewards.length > 0){
+        window.localStorage.clear()
+        localStorage.setItem(
+          "savedState",
+          JSON.stringify(this.state.stateRewards)
+          );
+        }
     }
 
     onDragOver(ev) {
@@ -127,19 +131,36 @@ export default class DragAndDrop extends React.Component{
     }
 
     deletePlacedReward(key){
-        if (this.state.stateRewards.length === 1) {
-         
-          // localStorage.removeItem("savedState")
-          localStorage.clear()
-        }
+        /*
+          if only one item in local state at time of deletion, clear the local storage
+          if more than one, go ahead and run the regular persist
+        */ 
 
-       let rewards = this.state.stateRewards.filter((rewardObj) => {
-         return rewardObj.key !== key;
-       });
-        
-       this.setState({ stateRewards: rewards })
-      
-        
+        localStorage.clear()
+          let rewards = this.state.stateRewards.filter(rewardObj => rewardObj.key !== key)
+          this.setState({stateRewards: rewards}, this.saveToStorage)
+
+
+
+        // if (this.state.stateRewards.length === 1) {
+        //  localStorage.clear()
+        //  let rewards = this.state.stateRewards.filter((rewardObj) => {
+        //    return rewardObj.key !== key;
+        //  });
+
+        //  this.setState({ stateRewards: rewards });
+
+        // } else {
+
+        //   let rewards = this.state.stateRewards.filter((rewardObj) => {
+        //     return rewardObj.key !== key;
+        //   });
+   
+           
+        //   this.setState({ stateRewards: rewards }, );
+        //   this.saveToStorage();
+        // }
+
     }
 
     render(){
