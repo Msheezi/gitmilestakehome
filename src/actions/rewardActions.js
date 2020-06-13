@@ -8,14 +8,14 @@ export const DELETE_REWARD = "DELETE_REWARD"
     type: ADD_REWARD,
     reward
 })
- const undoReward = (reward) => ({
-    type: UNDO_REWARD,
-    reward
-})
- const redoReward = (reward) => ({
-    type: REDO_REWARD,
-    reward
-})
+//  const undoReward = (reward) => ({
+//     type: UNDO_REWARD,
+//     reward
+// })
+//  const redoReward = (reward) => ({
+//     type: REDO_REWARD,
+//     reward
+// })
  const deleteReward = (key) => ({
   type: DELETE_REWARD,
   key,

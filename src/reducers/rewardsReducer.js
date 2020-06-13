@@ -4,7 +4,7 @@ import {
 } from '../actions/rewardActions'
 
 const initialState = {
-   rewards: JSON.parse(localStorage.getItem("savedState")) || []
+   rewards: []
 }
 
 const RewardsReducer = (state = initialState, action) => {
@@ -19,6 +19,7 @@ const RewardsReducer = (state = initialState, action) => {
         case DELETE_REWARD:
             newState = Object.assign({}, state)
             delete newState[action.reward.key]
+            return newState
         default:
             return state
     }

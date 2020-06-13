@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import Root from './root'
 import configureStore from './store/store'
+import { saveState } from "./store/localStorage";
+
 // import * as serviceWorker from './serviceWorker';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store = configureStore()
-  
+  store.subscribe(() => {
+    saveState({
+      rewards: store.getState.rewards
+    })})
+
+    window.getState = store.getState
   const root = document.getElementById("root")
   ReactDOM.render(<Root store={store}/>, root)
 })
