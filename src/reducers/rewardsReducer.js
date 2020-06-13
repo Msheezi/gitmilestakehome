@@ -3,31 +3,38 @@ import {
     DELETE_REWARD, UPDATE_REWARD
 } from '../actions/rewardActions'
 
-const initialState = {rewards: []}
+import undoable from 'redux-undo'
+
+const initialState =  []
+
 const RewardsReducer = (state = initialState, action) => {
     Object.freeze(state)
     let newState
     switch (action.type) {
         case ADD_REWARD:
-            newState = Object.assign({}, state)
-            // console.log("state:", state, "newState.rewards:",newState.rewards, state,action.reward)
-             newState.rewards.push(action.reward)
-        return newState
+            newState = state.concat([action.reward])
+            // newState.push(action.reward)
+            return newState
         case UPDATE_REWARD:
-            newState = Object.assign({}, state)
-            newState.rewards.forEach(obj => {
-                if (obj.key === action.key){
-                    obj.location = `${action.id}${action.cat}`
-                }
-            })
+            // newState = Object.assign({}, state)
+            const {name, bgcolor, key} = action.reward
+            newState = state.filter(obj => obj.key !== key) 
+            newState.push({
+              name: name,
+              key: key,
+              location: `${name}${action.cat}`,
+              bgcolor: bgcolor
+            });
+            
             return newState
         case DELETE_REWARD:
-            newState = Object.assign({}, state)
-            newState.rewards = newState.rewards.filter(obj => obj.key!== action.key )
+            newState = state.filter(obj => obj.key!== action.key )
             return newState
         default:
             return state
     }
 }
 
-export default RewardsReducer
+const undoableRewards = undoable(RewardsReducer)
+
+export default undoableRewards

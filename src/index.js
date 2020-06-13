@@ -11,9 +11,7 @@ import { saveState } from "./store/localStorage";
 document.addEventListener("DOMContentLoaded", () => {
   let store = configureStore()
   store.subscribe(() => {
-    saveState({
-      rewards: store.getState().rewards
-    })})
+    saveState(store.getState())})
 
     window.getState = store.getState
   const root = document.getElementById("root")

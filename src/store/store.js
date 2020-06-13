@@ -2,14 +2,14 @@ import { createStore, applyMiddleware } from "redux";
 
 import logger from "redux-logger";
 
-import RewardsReducer from "../reducers/rewardsReducer";
+import rootReducer from "../reducers/rootReducer";
 import { loadState } from './localStorage'
 
 
 
 const configureStore = () => {
   const persistedState = loadState()
-  return createStore(RewardsReducer, persistedState, applyMiddleware(logger));
+  return createStore(rootReducer, persistedState, applyMiddleware(logger));
 
 }
 

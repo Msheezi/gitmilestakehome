@@ -12,22 +12,12 @@ import {
   CloseButton,
 } from "./dragstyles";
 
-
-// const initialState = [{ name: "r2", location: "r2c3", bgcolor: "yellow", key:"1" }] ;
-
-// consider initializing state as an object with the key value being the key to the data
-// that way on the deletes, you can reference the object key and delete
-// may need to change eyour render methods to accomodate that.
-// objects get a key when they are added to the placed grid
-
 const rewards = [
      { name: "r1", category: "c1", bgcolor: "green"},
      { name: "r2", category: "c2", bgcolor: "yellow"},
      { name: "r3", category: "c3", bgcolor: "pink"},
      { name: "r4", category: "c4", bgcolor: "skyblue"},
      { name: "r5", category: "c5", bgcolor: "orange"}
-
-
 ]
 
 const colors = {
@@ -38,59 +28,7 @@ const colors = {
     r5: "orange"
 }
 
-// r1: { name: "r1", category: "c1", bgcolor: "green" },
-// r2: { name: "r2", category: "c2", bgcolor: "yellow" },
-// r3: { name: "r3", category: "c3", bgcolor: "pink" },
-// r4: { name: "r4", category: "c4", bgcolor: "skyblue" },
-// r5: { name: "r5", category: "c5", bgcolor: "orange" }
-
  class DragAndDrop extends React.Component{
-
-    state= { stateRewards: []
-        
-        // items: [
-        //     { name: "r1", category: "c1", bgcolor: "green" },
-        //      { name: "r2", category: "c2", bgcolor: "yellow" },
-        //      { name: "r3", category: "c3", bgcolor: "pink" },
-        //      { name: "r4", category: "c4", bgcolor: "skyblue" },
-        //      { name: "r5", category: "c5", bgcolor: "orange" }
-        // ]
-
-    }
-
-    // component did mount to retrieve from local storage
-    //component will unmount to save state to local storage
-
-    componentDidMount(){
-      // if (localStorage.getItem("savedState")){
-      // let stuff = localStorage.getItem("savedState");
-      // this.setState({ stateRewards: JSON.parse(stuff) })}
-      this.setState({stateRewards: this.props.rewards})
-    }
-    
-    componentWillUnmount(){
-      if (this.state.stateRewards.length === 0){
-        
-        localStorage.clear()
-      } else  {
-        let stuff = localStorage.setItem("savedState", JSON.stringify(this.state.stateRewards))
-        localStorage.setItem("savedState", stuff)
-      }
-    }
-
-    saveToStorage(){
-      /*
-        Save to storage only occurs if the current local state has values, otherwise it remains clear
-        Thought is there is no need to run the function if there are no values to place in storage
-      */
-      if(this.state.stateRewards.length > 0){
-        localStorage.clear()
-        localStorage.setItem(
-          "savedState",
-          JSON.stringify(this.state.stateRewards)
-          );
-        }
-    }
 
     onDragOver(ev) {
         ev.preventDefault()
@@ -107,50 +45,41 @@ const colors = {
         
         /*
         1. Get the values from the on drag start
-        2. set my updated flag - using this to control whether I am changing a 
-        location on an existing object in state or creating a new object in state
-        3a. if I am changing an existing value, update state with the copied values
-        3b. If object is not found, create a new object and update state with the new object
-        4. Need to dispatch the add to a reducer for redux
+        2. On drop:
+            if an existing reward, find the reward in props and pass to dispatch
+              passing the full reward to avoid shallow copy issues with redux-undo
+            if a new reward, create the object and pass to dispatch.
+ 
         */
 
         let id = ev.dataTransfer.getData("id")
         let key = ev.dataTransfer.getData("key") 
-        let myState = this.state.stateRewards
+        let myState = [...this.props.rewards]
         
-        let updated = false
-        myState.forEach( obj => {
-          if (obj.key === key){
-            obj.location = `${id}${cat}`
-            updated = true
-          }
-        })
 
-        if (updated){
+        let updatedObj = myState.find(obj => obj.key === key)
+        
+        
+
+        if (updatedObj){
           
-          this.props.movingReward(id,key,cat)
+          this.props.movingReward(updatedObj, cat)
 
-        } else if (!updated) {
-          const placedReward = { name: id, location: `${id}${cat}`, bgcolor: colors[id], key: key }
-          myState.push(placedReward)
-          this.props.updateReward(placedReward)
-          // this.setState({ stateRewards: myState }, this.saveToStorage());
-        }
-        
-
-        
+        } else if (!updatedObj) {
+                 const placedReward = {
+                   name: id,
+                   location: `${id}${cat}`,
+                   bgcolor: colors[id],
+                   key: key,
+                 };
+                 myState.push(placedReward);
+                 this.props.updateReward(placedReward);
+               }
+      
     }
 
     deletePlacedReward(key){
-        /*
-          When function executes, clear the local storage, set state and update storage with the current completed state
-          saveToStorage added as callback to avoid race condition
-        */ 
-
-        // localStorage.clear()
-        //   let rewards = this.state.stateRewards.filter(rewardObj => rewardObj.key !== key)
-        //   this.setState({stateRewards: rewards}, this.saveToStorage)
-        this.props.removeReward(key)
+      this.props.removeReward(key)
     }
 
     render(){
@@ -176,13 +105,14 @@ const colors = {
         })
 
         let placedReward
-        // if (this.state.stateRewards.length > 0 ){
           if (this.props.rewards.length > 0){
-          //  placedReward = this.state.stateRewards.map((reward) => {
            placedReward = this.props.rewards.map((reward) => {
+           
             /*
-            this function is reading state for any placed rewards and creating dom nodes to attached the values to
+            this function is reading state for any placed rewards and creating dom nodes 
+            to attach the values to
             */
+
            return (
              <PlacedReward
                location={reward.location}
@@ -265,7 +195,7 @@ const colors = {
 }
 
 const msp = state => {
-  let rewards = Object.values(state.rewards)
+  let rewards = Object.values(state.rewards.present)
   return {
     rewards: rewards
   }
@@ -274,7 +204,7 @@ const msp = state => {
 const mdp = dispatch => ({
     updateReward: (reward) => dispatch(updateReward(reward)),
     removeReward: (key) => dispatch(removeReward(key)),
-  movingReward: (id,key,cat) => dispatch(movingReward(id,key,cat))
+  movingReward: (reward, cat) => dispatch(movingReward(reward, cat))
 })
 
 export default connect(msp, mdp)(DragAndDrop)
