@@ -10,7 +10,7 @@ import {
   PlacedReward,
 } from "./dragstyles";
 
-const initialState = [{ name: "r2", location: "r2c3", bgcolor: "yellow", key:"1" }] ;
+// const initialState = [{ name: "r2", location: "r2c3", bgcolor: "yellow", key:"1" }] ;
 
 // consider initializing state as an object with the key value being the key to the data
 // that way on the deletes, you can reference the object key and delete
@@ -66,7 +66,7 @@ export default class DragAndDrop extends React.Component{
     
     componentWillUnmount(){
       if (this.state.stateRewards.length === 0){
-        // localStorage.removeItem("savedState")
+        
         localStorage.clear()
       } else  {
         let stuff = localStorage.setItem("savedState", JSON.stringify(this.state.stateRewards))

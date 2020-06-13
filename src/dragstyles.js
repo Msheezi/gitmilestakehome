@@ -18,11 +18,6 @@ export const MainContainer = styled.div`
        //update your column widths and grid gaps
        // add in the barriers between columns
 
-export const RewardsContainer = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-`;
 
 export const RewardBox = styled.div`
   cursor: pointer;
