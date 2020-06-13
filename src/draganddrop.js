@@ -43,7 +43,7 @@ const colors = {
 
 export default class DragAndDrop extends React.Component{
 
-    state= { stateRewards: initialState
+    state= { stateRewards: []
         
         // items: [
         //     { name: "r1", category: "c1", bgcolor: "green" },
@@ -57,7 +57,30 @@ export default class DragAndDrop extends React.Component{
 
     // component did mount to retrieve from local storage
     //component will unmount to save state to local storage
+
+    componentDidMount(){
+      if (localStorage.getItem("savedState")){
+      let stuff = localStorage.getItem("savedState");
+      this.setState({ stateRewards: JSON.parse(stuff) })}
+    }
     
+    componentWillUnmount(){
+      if (this.state.stateRewards.length === 0){
+        // localStorage.removeItem("savedState")
+        localStorage.clear()
+      } else  {
+        let stuff = localStorage.setItem("savedState", JSON.stringify(this.state.stateRewards))
+        localStorage.setItem("savedState", stuff)
+      }
+    }
+
+    saveToStorage(){
+      localStorage.setItem(
+        "savedState",
+        JSON.stringify(this.state.stateRewards)
+      );
+    }
+
     onDragOver(ev) {
         ev.preventDefault()
     }
@@ -92,13 +115,30 @@ export default class DragAndDrop extends React.Component{
         })
 
         if (updated){
-          this.setState({stateRewards : myState})
+          this.setState({stateRewards : myState}, this.saveToStorage())
         } else if (!updated) {
           const placedReward = { name: id, location: `${id}${cat}`, bgcolor: colors[id], key: key }
           myState.push(placedReward)
-          this.setState({stateRewards: myState})
+          this.setState({ stateRewards: myState }, this.saveToStorage());
         }
         
+
+        
+    }
+
+    deletePlacedReward(key){
+        if (this.state.stateRewards.length === 1) {
+         
+          // localStorage.removeItem("savedState")
+          localStorage.clear()
+        }
+
+       let rewards = this.state.stateRewards.filter((rewardObj) => {
+         return rewardObj.key !== key;
+       });
+        
+       this.setState({ stateRewards: rewards })
+      
         
     }
 
@@ -124,23 +164,28 @@ export default class DragAndDrop extends React.Component{
         );
         })
 
-        
-        const placedReward = this.state.stateRewards.map((reward) => {
-          /*
+        let placedReward
+        if (this.state.stateRewards.length > 0 ){
+
+           placedReward = this.state.stateRewards.map((reward) => {
+            /*
             this function is reading state for any placed rewards and creating dom nodes to attached the values to
-          */
-            return (
-            <PlacedReward location={reward.location}
-                key={reward.key}
-                color={reward.bgcolor}
-                draggable
-                onDragStart={e=> this.onDragStart(e,reward.name, reward.key)}
-                
-            >
-              {reward.name}
+            */
+           return (
+             <PlacedReward location={reward.location}
+             key={reward.key}
+             color={reward.bgcolor}
+             draggable
+             onDragStart={e=> this.onDragStart(e,reward.name, reward.key)}
+             
+             
+             >
+              {reward.name} 
+              <div onClick={() => this.deletePlacedReward(reward.key)}>X</div>
             </PlacedReward>
           );
         });
+      } 
 
 
         return (
