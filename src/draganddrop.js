@@ -107,6 +107,7 @@ export default class DragAndDrop extends React.Component{
         location on an existing object in state or creating a new object in state
         3a. if I am changing an existing value, update state with the copied values
         3b. If object is not found, create a new object and update state with the new object
+        4. Need to dispact the add to a reducer for redux
         */
 
         let id = ev.dataTransfer.getData("id")
@@ -254,3 +255,11 @@ export default class DragAndDrop extends React.Component{
 
     }
 }
+
+// const msp = state => {
+
+// }
+
+// const mdp = dispatch => {
+
+// }
