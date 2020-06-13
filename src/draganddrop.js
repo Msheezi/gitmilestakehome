@@ -67,7 +67,7 @@ export default class DragAndDrop extends React.Component{
     componentWillUnmount(){
       if (this.state.stateRewards.length === 0){
         // localStorage.removeItem("savedState")
-        window.localStorage.clear()
+        localStorage.clear()
       } else  {
         let stuff = localStorage.setItem("savedState", JSON.stringify(this.state.stateRewards))
         localStorage.setItem("savedState", stuff)
@@ -75,9 +75,12 @@ export default class DragAndDrop extends React.Component{
     }
 
     saveToStorage(){
-
+      /*
+        Save to storage only occurs if the current local state has values, otherwise it remains clear
+        Thought is there is no need to run the function if there are no values to place in storage
+      */
       if(this.state.stateRewards.length > 0){
-        window.localStorage.clear()
+        localStorage.clear()
         localStorage.setItem(
           "savedState",
           JSON.stringify(this.state.stateRewards)
@@ -132,34 +135,13 @@ export default class DragAndDrop extends React.Component{
 
     deletePlacedReward(key){
         /*
-          if only one item in local state at time of deletion, clear the local storage
-          if more than one, go ahead and run the regular persist
+          When function executes, clear the local storage, set state and update storage with the current completed state
+          saveToStorage added as callback to avoid race condition
         */ 
 
         localStorage.clear()
           let rewards = this.state.stateRewards.filter(rewardObj => rewardObj.key !== key)
           this.setState({stateRewards: rewards}, this.saveToStorage)
-
-
-
-        // if (this.state.stateRewards.length === 1) {
-        //  localStorage.clear()
-        //  let rewards = this.state.stateRewards.filter((rewardObj) => {
-        //    return rewardObj.key !== key;
-        //  });
-
-        //  this.setState({ stateRewards: rewards });
-
-        // } else {
-
-        //   let rewards = this.state.stateRewards.filter((rewardObj) => {
-        //     return rewardObj.key !== key;
-        //   });
-   
-           
-        //   this.setState({ stateRewards: rewards }, );
-        //   this.saveToStorage();
-        // }
 
     }
 
