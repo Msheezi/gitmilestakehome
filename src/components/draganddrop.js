@@ -1,4 +1,6 @@
 import React from 'react'
+import {updateReward, removeReward} from '../actions/rewardActions'
+import { connect } from "react-redux";
 
 import {
   MainContainer,
@@ -9,6 +11,7 @@ import {
   PlacedReward,
   CloseButton,
 } from "./dragstyles";
+
 
 // const initialState = [{ name: "r2", location: "r2c3", bgcolor: "yellow", key:"1" }] ;
 
@@ -41,7 +44,7 @@ const colors = {
 // r4: { name: "r4", category: "c4", bgcolor: "skyblue" },
 // r5: { name: "r5", category: "c5", bgcolor: "orange" }
 
-export default class DragAndDrop extends React.Component{
+ class DragAndDrop extends React.Component{
 
     state= { stateRewards: []
         
@@ -256,10 +259,16 @@ export default class DragAndDrop extends React.Component{
     }
 }
 
-// const msp = state => {
+const msp = state => {
+  let rewards = Object.values(state)
+  return {
+    rewards: rewards
+  }
+}
 
-// }
+const mdp = dispatch => ({
+    updateReward: reward => dispatch(updateReward(reward)),
+    removeReward: key => dispatch(removeReward(key))
+})
 
-// const mdp = dispatch => {
-
-// }
+export default connect(msp, mdp)(DragAndDrop)
