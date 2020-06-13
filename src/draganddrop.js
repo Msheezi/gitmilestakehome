@@ -2,12 +2,12 @@ import React from 'react'
 
 import {
   MainContainer,
- 
   RewardBox,
   Title,
   CategoriesContainer,
   CategoryColumn,
   PlacedReward,
+  CloseButton,
 } from "./dragstyles";
 
 // const initialState = [{ name: "r2", location: "r2c3", bgcolor: "yellow", key:"1" }] ;
@@ -175,18 +175,19 @@ export default class DragAndDrop extends React.Component{
             this function is reading state for any placed rewards and creating dom nodes to attached the values to
             */
            return (
-             <PlacedReward location={reward.location}
-             key={reward.key}
-             color={reward.bgcolor}
-             draggable
-             onDragStart={e=> this.onDragStart(e,reward.name, reward.key)}
-             
-             
+             <PlacedReward
+               location={reward.location}
+               key={reward.key}
+               color={reward.bgcolor}
+               draggable
+               onDragStart={(e) => this.onDragStart(e, reward.name, reward.key)}
              >
-              {reward.name} 
-              <div onClick={() => this.deletePlacedReward(reward.key)}>X</div>
-            </PlacedReward>
-          );
+               {reward.name}
+               <CloseButton onClick={() => this.deletePlacedReward(reward.key)}>
+                 X
+               </CloseButton>
+             </PlacedReward>
+           );
         });
       } 
 

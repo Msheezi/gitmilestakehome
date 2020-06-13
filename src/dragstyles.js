@@ -58,4 +58,17 @@ export const PlacedReward = styled.div`
          text-align: center;
          height: 100px;
          width:100px;
+         position: relative;
+
        `;
+
+export const CloseButton = styled.div`
+  line-height:20px;
+  width: 20px;
+  position: absolute;
+  top: 2px;
+  right:2px;
+  cursor: pointer;
+  border-radius: 10px;
+  background-color: white;
+`
