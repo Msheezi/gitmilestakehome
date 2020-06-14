@@ -9,6 +9,7 @@ export const MainContainer = styled.div`
          grid-template-areas:
            "rewardheader . categoryheader . . . ."
            ".  . c1header  c2header  c3header  c4header  c5header"
+           ". . . spacer . . ."
            "r1 . r1c1 r1c2 r1c3 r1c4 r1c5"
            "r2 . r2c1 r2c2 r2c3 r2c4 r2c5"
            "r3 . r3c1 r3c2 r3c3 r3c4 r3c5"
@@ -45,7 +46,7 @@ export const CategoriesContainer = styled.div`
 export const CategoryColumn = styled.div`
     grid-area: ${(props)=> props.location};
     grid-row-start: 2;
-    grid-row-end: span 6;
+    grid-row-end: span 7;
     text-align: center;
     
 `
@@ -71,4 +72,9 @@ export const CloseButton = styled.div`
   cursor: pointer;
   border-radius: 10px;
   background-color: white;
+`
+export  const SpacerDiv = styled.div`
+grid-area: spacer;
+height: 50px;
+
 `

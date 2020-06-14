@@ -10,6 +10,7 @@ import {
   CategoryColumn,
   PlacedReward,
   CloseButton,
+  SpacerDiv,
 } from "./dragstyles";
 
 const rewards = [
@@ -133,23 +134,20 @@ const colors = {
 
         return (
           <MainContainer>
+            <SpacerDiv/>
             <Title location={"rewardheader"}>Rewards</Title>
             {styledrewards}
-
             <CategoriesContainer>
               <Title>Categories</Title>
             </CategoriesContainer>
-
             <CategoryColumn
               location={"c1header"}
               className="rewards1"
               onDragOver={(e) => this.onDragOver(e)}
               onDrop={(e) => this.onDrop(e, "c1")}
             >
-              
               <span className="category">C1</span>
             </CategoryColumn>
-
             <CategoryColumn
               location={"c2header"}
               className="rewards1"
@@ -158,7 +156,6 @@ const colors = {
             >
               <span className="category">C2</span>
             </CategoryColumn>
-
             <CategoryColumn
               location={"c3header"}
               className="rewards1"
@@ -167,7 +164,6 @@ const colors = {
             >
               <span className="category">C3</span>
             </CategoryColumn>
-
             <CategoryColumn
               location={"c4header"}
               className="rewards1"
@@ -176,7 +172,6 @@ const colors = {
             >
               <span className="category">C4</span>
             </CategoryColumn>
-
             <CategoryColumn
               location={"c5header"}
               className="rewards1"
@@ -185,8 +180,6 @@ const colors = {
             >
               <span className="category">C5</span>
             </CategoryColumn>
-            
-            
             {placedReward}
           </MainContainer>
         );
