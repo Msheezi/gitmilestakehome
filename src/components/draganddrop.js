@@ -94,6 +94,7 @@ const colors = {
        
         return (
           <RewardBox
+            data-testid={`rewards${item.name}`}
             key={item.name}
             color={item.bgcolor}
             location={item.name}
@@ -116,6 +117,7 @@ const colors = {
 
            return (
              <PlacedReward
+                data-testid={`reward ${reward.location}`}
                location={reward.location}
                key={reward.key}
                color={reward.bgcolor}
@@ -141,6 +143,7 @@ const colors = {
               <Title>Categories</Title>
             </CategoriesContainer>
             <CategoryColumn
+              data-testid="c1Dropzone"
               location={"c1header"}
               className="rewards1"
               onDragOver={(e) => this.onDragOver(e)}

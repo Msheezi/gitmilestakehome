@@ -64,6 +64,7 @@ export const PlacedReward = styled.div`
        `;
 
 export const CloseButton = styled.div`
+  
   line-height:20px;
   width: 20px;
   position: absolute;
