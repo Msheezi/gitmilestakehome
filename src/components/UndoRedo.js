@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 
 let UndoRedo = ({ canUndo, canRedo, onUndo, onRedo }) => (
   <p>
-    <button onClick={onUndo} disabled={!canUndo}>
+    <button type="undo" onClick={onUndo} disabled={!canUndo}>
       Undo
     </button>
-    <button onClick={onRedo} disabled={!canRedo}>
+    <button type="redo" onClick={onRedo} disabled={!canRedo}>
       Redo
     </button>
   </p>
