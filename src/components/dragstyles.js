@@ -40,7 +40,7 @@ export const Title = styled.h2`
   text-align: center;
   grid-area: ${(props)=> props.location};
   border-bottom: 1px solid black;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   
 `;
 
@@ -91,7 +91,8 @@ height: 50px;
 
 export const VertDiv = styled.div`
   grid-area: vertspacer;
-  grid-row-start: 2;
-  grid-row-end: span 7;
+  grid-row-start: 1;
+  grid-row-end: span 8;
   border-right: 1px solid black;
+  margin: 10px;
 `

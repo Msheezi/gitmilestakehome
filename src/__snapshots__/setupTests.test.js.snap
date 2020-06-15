@@ -8,7 +8,7 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     className="sc-Axmtr zEjJq"
   />
   <h2
-    className="sc-AxiKw gieqaI"
+    className="sc-AxiKw dMAqCs"
   >
     Rewards
   </h2>
@@ -61,7 +61,7 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     className="sc-AxhCb jFVYKg"
   >
     <h2
-      className="sc-AxiKw eidAyk"
+      className="sc-AxiKw jaxNuQ"
     >
       Categories
     </h2>
@@ -142,7 +142,7 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     </div>
   </div>
   <div
-    className="sc-AxmLO hwYpmq"
+    className="sc-AxmLO eyIhGq"
   />
 </div>
 `;

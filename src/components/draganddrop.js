@@ -65,7 +65,7 @@ const colors = {
          * bug: while placing the same square in the same swin lane doesn't
          * duplicate, it does fire a redux action
          * revise the conditional so that if it matches key and location
-         * do nothing else if key matches, do update else, add new
+         * do nothing else if key matches, do update else create obj
          */
 
         if (updatedObj){
@@ -107,15 +107,13 @@ const colors = {
       return renderedDropZones
     }
 
-    render(){
+    renderRewards(){
+      const styledrewards = rewards.map(item => {
+        /*
+          this function is reading the rewards array and creating the starting items from 
+          which users will drag a reward to a category
+        */
 
-
-       const styledrewards =  rewards.map( item => {
-          /*
-            this function is reading the rewards array and creating the starting items from 
-            which users will drag a reward to a category
-          */
-       
         return (
           <RewardBox
             data-testid={`rewards${item.name}`}
@@ -128,34 +126,46 @@ const colors = {
             {item.name}
           </RewardBox>
         );
-        })
+      })
+      return styledrewards
+    }
 
-        let placedReward
-          if (this.props.rewards.length > 0){
-           placedReward = this.props.rewards.map((reward) => {
-           
-            /*
-            this function is reading state for any placed rewards and creating dom nodes 
-            to attach the values to
-            */
 
-           return (
-             <PlacedReward
-                data-testid={`reward ${reward.location}`}
-               location={reward.location}
-               key={reward.key}
-               color={reward.bgcolor}
-               draggable
-               onDragStart={(e) => this.onDragStart(e, reward.name, reward.key)}
-             >
-               {reward.name}
-               <CloseButton onClick={() => this.deletePlacedReward(reward.key)}>
-                 X
+    renderPlacedRewards(){
+      let placedReward
+      if (this.props.rewards.length > 0) {
+        placedReward = this.props.rewards.map((reward) => {
+
+          /*
+          this function is reading state for any placed rewards and creating dom nodes 
+          to attach the values to
+          */
+
+          return (
+            <PlacedReward
+              data-testid={`reward ${reward.location}`}
+              location={reward.location}
+              key={reward.key}
+              color={reward.bgcolor}
+              draggable
+              onDragStart={(e) => this.onDragStart(e, reward.name, reward.key)}
+            >
+              {reward.name}
+              <CloseButton onClick={() => this.deletePlacedReward(reward.key)}>
+                X
                </CloseButton>
-             </PlacedReward>
-           );
+            </PlacedReward>
+          );
         });
       } 
+      return placedReward
+    }
+    render(){
+
+
+        let placedReward = this.renderPlacedRewards()
+        let styledrewards = this.renderRewards()
+        
         let drops = this.renderDropZones()
 
         return (
