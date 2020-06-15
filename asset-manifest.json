@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/gitmilestakehome/static/css/main.b8342ecc.chunk.css",
-    "main.js": "/gitmilestakehome/static/js/main.3fc4ab49.chunk.js",
-    "main.js.map": "/gitmilestakehome/static/js/main.3fc4ab49.chunk.js.map",
+    "main.css": "/gitmilestakehome/static/css/main.0981c665.chunk.css",
+    "main.js": "/gitmilestakehome/static/js/main.e54174b3.chunk.js",
+    "main.js.map": "/gitmilestakehome/static/js/main.e54174b3.chunk.js.map",
     "runtime-main.js": "/gitmilestakehome/static/js/runtime-main.fe98da60.js",
     "runtime-main.js.map": "/gitmilestakehome/static/js/runtime-main.fe98da60.js.map",
     "static/js/2.334046b6.chunk.js": "/gitmilestakehome/static/js/2.334046b6.chunk.js",
     "static/js/2.334046b6.chunk.js.map": "/gitmilestakehome/static/js/2.334046b6.chunk.js.map",
     "index.html": "/gitmilestakehome/index.html",
-    "precache-manifest.ac1b246962a8463f55443a143907e733.js": "/gitmilestakehome/precache-manifest.ac1b246962a8463f55443a143907e733.js",
+    "precache-manifest.747b697cb6aeafa30e73028df3ffe6af.js": "/gitmilestakehome/precache-manifest.747b697cb6aeafa30e73028df3ffe6af.js",
     "service-worker.js": "/gitmilestakehome/service-worker.js",
-    "static/css/main.b8342ecc.chunk.css.map": "/gitmilestakehome/static/css/main.b8342ecc.chunk.css.map",
+    "static/css/main.0981c665.chunk.css.map": "/gitmilestakehome/static/css/main.0981c665.chunk.css.map",
     "static/js/2.334046b6.chunk.js.LICENSE.txt": "/gitmilestakehome/static/js/2.334046b6.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fe98da60.js",
     "static/js/2.334046b6.chunk.js",
-    "static/css/main.b8342ecc.chunk.css",
-    "static/js/main.3fc4ab49.chunk.js"
+    "static/css/main.0981c665.chunk.css",
+    "static/js/main.e54174b3.chunk.js"
   ]
 }

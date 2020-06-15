@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "80b34983db42fb5e75eaf3ea67f467bd",
+    "revision": "1cea7d4de339538d0ce9da424bd56b9a",
     "url": "/gitmilestakehome/index.html"
   },
   {
-    "revision": "25a6821741771ab49c24",
-    "url": "/gitmilestakehome/static/css/main.b8342ecc.chunk.css"
+    "revision": "d91c16a0b2458782f70a",
+    "url": "/gitmilestakehome/static/css/main.0981c665.chunk.css"
   },
   {
     "revision": "8f34691e65c958621ce1",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gitmilestakehome/static/js/2.334046b6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "25a6821741771ab49c24",
-    "url": "/gitmilestakehome/static/js/main.3fc4ab49.chunk.js"
+    "revision": "d91c16a0b2458782f70a",
+    "url": "/gitmilestakehome/static/js/main.e54174b3.chunk.js"
   },
   {
     "revision": "d45180edd2b4f8352d50",
