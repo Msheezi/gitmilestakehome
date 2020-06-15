@@ -11,22 +11,23 @@ import {
   PlacedReward,
   CloseButton,
   SpacerDiv,
+  VertDiv
 } from "./dragstyles";
 
 const rewards = [
-     { name: "r1", category: "c1", bgcolor: "green"},
-     { name: "r2", category: "c2", bgcolor: "yellow"},
-     { name: "r3", category: "c3", bgcolor: "pink"},
-     { name: "r4", category: "c4", bgcolor: "skyblue"},
-     { name: "r5", category: "c5", bgcolor: "orange"}
+  { name: "r1", category: "c1", bgcolor: "#f5e6e8"},
+  { name: "r2", category: "c2", bgcolor: "#a3f7b5"},
+  { name: "r3", category: "c3", bgcolor: "#40c9a2"},
+  { name: "r4", category: "c4", bgcolor: "#2f9c95"},
+  { name: "r5", category: "c5", bgcolor: "#bee3ea"}
 ]
 
 const colors = {
-    r1: "green",
-    r2: "yellow",
-    r3: "pink",
-    r4: "skyblue",
-    r5: "orange"
+  r1: "#f5e6e8",
+  r2: "#a3f7b5",
+  r3: "#40c9a2",
+  r4: "#2f9c95",
+  r5: "#bee3ea"
 }
 
  class DragAndDrop extends React.Component{
@@ -184,6 +185,7 @@ const colors = {
               <span className="category">C5</span>
             </CategoryColumn>
             {placedReward}
+            <VertDiv/>
           </MainContainer>
         );
 

@@ -3,11 +3,13 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
          display: grid;
          width: 80vw;
-         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+         grid-template-columns: minmax(150px,1fr) 0.5fr minmax(150px,1fr) minmax(150px,1fr) minmax(150px,1fr) minmax(150px,1fr) minmax(150px,1fr);
+         /* 150px 50px 150px 150px 150px 150px 150px  */
+          
          grid-template-rows: auto;
          /* grid-gap: 20px; */
          grid-template-areas:
-           "rewardheader . categoryheader . . . ."
+           "rewardheader vertspacer categoryheader . . . ."
            ".  . c1header  c2header  c3header  c4header  c5header"
            ". . . spacer . . ."
            "r1 . r1c1 r1c2 r1c3 r1c4 r1c5"
@@ -28,18 +30,24 @@ export const RewardBox = styled.div`
   background-color: ${(props) => props.color};
   text-align: center;
   line-height: 100px;
-  margin: 20px;
+  margin: 20px auto;
   grid-area: ${(props) => props.location};
+
+
 `;
 
 export const Title = styled.h2`
   text-align: center;
   grid-area: ${(props)=> props.location};
+  /* border-bottom: 1px solid black; */
+  text-decoration: underline;
+  
 `;
 
 export const CategoriesContainer = styled.div`
    grid-column-start: 3 ;
    grid-column-end: 7;
+   
 
 `
 
@@ -48,18 +56,19 @@ export const CategoryColumn = styled.div`
     grid-row-start: 2;
     grid-row-end: span 7;
     text-align: center;
-    
+    border-right: 1px solid black;
 `
 
 export const PlacedReward = styled.div`
          line-height: 100px;
-         margin: 20px;
+         margin: 20px auto;
          background-color: ${(props)=> props.color};
          grid-area: ${(props)=> props.location};
          text-align: center;
          height: 100px;
          width:100px;
          position: relative;
+
 
        `;
 
@@ -78,4 +87,11 @@ export  const SpacerDiv = styled.div`
 grid-area: spacer;
 height: 50px;
 
+`
+
+export const VertDiv = styled.div`
+  grid-area: vertspacer;
+  grid-row-start: 2;
+  grid-row-end: span 7;
+  border-right: 1px solid black;
 `
