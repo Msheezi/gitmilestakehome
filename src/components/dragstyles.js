@@ -68,6 +68,7 @@ export const PlacedReward = styled.div`
          height: 100px;
          width:100px;
          position: relative;
+         
 
 
        `;

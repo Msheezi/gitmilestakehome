@@ -50,6 +50,7 @@
   line-height: 5em;
 }
 
-.rewards1{
-  text-decoration: underline;
+.rewards1 > span{
+  border-bottom: 1px solid black;
+  width: 100px;
 }

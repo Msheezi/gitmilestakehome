@@ -127,7 +127,7 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     </span>
   </div>
   <div
-    className="sc-AxgMl gNoHzy"
+    className="sc-AxgMl iTkSug"
     color="orange"
     data-testid="reward r5c1"
     draggable={true}
