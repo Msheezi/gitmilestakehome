@@ -39,14 +39,14 @@ export const RewardBox = styled.div`
 export const Title = styled.h2`
   text-align: center;
   grid-area: ${(props)=> props.location};
-  /* border-bottom: 1px solid black; */
+  border-bottom: 1px solid black;
   text-decoration: underline;
   
 `;
 
 export const CategoriesContainer = styled.div`
    grid-column-start: 3 ;
-   grid-column-end: 7;
+   grid-column-end: 8;
    
 
 `

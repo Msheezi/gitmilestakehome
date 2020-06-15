@@ -59,9 +59,14 @@ const colors = {
         let myState = [...this.props.rewards]
         
 
-        let updatedObj = myState.find(obj => obj.key === key)
+        let updatedObj = myState.find(obj => obj.key === key )
         
-        
+        /**
+         * bug: while placing the same square in the same swin lane doesn't
+         * duplicate, it does fire a redux action
+         * revise the conditional so that if it matches key and location
+         * do nothing else if key matches, do update else, add new
+         */
 
         if (updatedObj){
           
@@ -82,6 +87,24 @@ const colors = {
 
     deletePlacedReward(key){
       this.props.removeReward(key)
+    }
+
+    renderDropZones(){
+      let categories = ["c1","c2","c3","c4","c5"]
+      let renderedDropZones = 
+      categories.map(cat => {
+      return (<CategoryColumn
+        data-testid={`${cat}Dropzone`}
+        key={cat}
+        location={`${cat}header`}
+        className="rewards1"
+        onDragOver={(e) => this.onDragOver(e)}
+        onDrop={(e) => this.onDrop(e, `${cat}`)}
+      >
+        <span className="category">{cat}</span>
+      </CategoryColumn>)
+      })
+      return renderedDropZones
     }
 
     render(){
@@ -133,7 +156,7 @@ const colors = {
            );
         });
       } 
-
+        let drops = this.renderDropZones()
 
         return (
           <MainContainer>
@@ -143,47 +166,8 @@ const colors = {
             <CategoriesContainer>
               <Title>Categories</Title>
             </CategoriesContainer>
-            <CategoryColumn
-              data-testid="c1Dropzone"
-              location={"c1header"}
-              className="rewards1"
-              onDragOver={(e) => this.onDragOver(e)}
-              onDrop={(e) => this.onDrop(e, "c1")}
-            >
-              <span className="category">C1</span>
-            </CategoryColumn>
-            <CategoryColumn
-              location={"c2header"}
-              className="rewards1"
-              onDragOver={(e) => this.onDragOver(e)}
-              onDrop={(e) => this.onDrop(e, "c2")}
-            >
-              <span className="category">C2</span>
-            </CategoryColumn>
-            <CategoryColumn
-              location={"c3header"}
-              className="rewards1"
-              onDragOver={(e) => this.onDragOver(e)}
-              onDrop={(e) => this.onDrop(e, "c3")}
-            >
-              <span className="category">C3</span>
-            </CategoryColumn>
-            <CategoryColumn
-              location={"c4header"}
-              className="rewards1"
-              onDragOver={(e) => this.onDragOver(e)}
-              onDrop={(e) => this.onDrop(e, "c4")}
-            >
-              <span className="category">C4</span>
-            </CategoryColumn>
-            <CategoryColumn
-              location={"c5header"}
-              className="rewards1"
-              onDragOver={(e) => this.onDragOver(e)}
-              onDrop={(e) => this.onDrop(e, "c5")}
-            >
-              <span className="category">C5</span>
-            </CategoryColumn>
+            
+            {drops}
             {placedReward}
             <VertDiv/>
           </MainContainer>

@@ -1,160 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Placed Rewards Render Correctly should render with given state 1`] = `
-<div
-  className="sc-AxjAm bdeCLP"
->
-  <div
-    className="sc-Axmtr zEjJq"
-  />
-  <h2
-    className="sc-AxiKw kmnWDn"
-  >
-    Rewards
-  </h2>
-  <div
-    className="sc-AxirZ ilolUk"
-    color="green"
-    data-testid="rewardsr1"
-    draggable={true}
-    onDragStart={[Function]}
-  >
-    r1
-  </div>
-  <div
-    className="sc-AxirZ dvzChc"
-    color="yellow"
-    data-testid="rewardsr2"
-    draggable={true}
-    onDragStart={[Function]}
-  >
-    r2
-  </div>
-  <div
-    className="sc-AxirZ ftBftl"
-    color="pink"
-    data-testid="rewardsr3"
-    draggable={true}
-    onDragStart={[Function]}
-  >
-    r3
-  </div>
-  <div
-    className="sc-AxirZ gbobWJ"
-    color="skyblue"
-    data-testid="rewardsr4"
-    draggable={true}
-    onDragStart={[Function]}
-  >
-    r4
-  </div>
-  <div
-    className="sc-AxirZ kdqvAf"
-    color="orange"
-    data-testid="rewardsr5"
-    draggable={true}
-    onDragStart={[Function]}
-  >
-    r5
-  </div>
-  <div
-    className="sc-AxhCb jdFgLp"
-  >
-    <h2
-      className="sc-AxiKw bAZauj"
-    >
-      Categories
-    </h2>
-  </div>
-  <div
-    className="sc-AxhUy gvbPeP rewards1"
-    data-testid="c1Dropzone"
-    onDragOver={[Function]}
-    onDrop={[Function]}
-  >
-    <span
-      className="category"
-    >
-      C1
-    </span>
-  </div>
-  <div
-    className="sc-AxhUy gJdJUc rewards1"
-    onDragOver={[Function]}
-    onDrop={[Function]}
-  >
-    <span
-      className="category"
-    >
-      C2
-    </span>
-  </div>
-  <div
-    className="sc-AxhUy bNsNvx rewards1"
-    onDragOver={[Function]}
-    onDrop={[Function]}
-  >
-    <span
-      className="category"
-    >
-      C3
-    </span>
-  </div>
-  <div
-    className="sc-AxhUy bsoZXO rewards1"
-    onDragOver={[Function]}
-    onDrop={[Function]}
-  >
-    <span
-      className="category"
-    >
-      C4
-    </span>
-  </div>
-  <div
-    className="sc-AxhUy jvVJML rewards1"
-    onDragOver={[Function]}
-    onDrop={[Function]}
-  >
-    <span
-      className="category"
-    >
-      C5
-    </span>
-  </div>
-  <div
-    className="sc-AxgMl dzbfqP"
-    color="orange"
-    data-testid="reward r5c1"
-    draggable={true}
-    onDragStart={[Function]}
-  >
-    r5
-    <div
-      className="sc-AxheI gEUzsA"
-      onClick={[Function]}
-    >
-      X
-    </div>
-  </div>
-</div>
-`;
-
 exports[`Stored Rewards Render Correctly should render with given state 1`] = `
 <div
-  className="sc-AxjAm bdeCLP"
+  className="sc-AxjAm bhEZON"
 >
   <div
     className="sc-Axmtr zEjJq"
   />
   <h2
-    className="sc-AxiKw kmnWDn"
+    className="sc-AxiKw gieqaI"
   >
     Rewards
   </h2>
   <div
-    className="sc-AxirZ ilolUk"
-    color="green"
+    className="sc-AxirZ kLgyuO"
+    color="#f5e6e8"
     data-testid="rewardsr1"
     draggable={true}
     onDragStart={[Function]}
@@ -162,8 +22,8 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     r1
   </div>
   <div
-    className="sc-AxirZ dvzChc"
-    color="yellow"
+    className="sc-AxirZ fUVzAA"
+    color="#a3f7b5"
     data-testid="rewardsr2"
     draggable={true}
     onDragStart={[Function]}
@@ -171,8 +31,8 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     r2
   </div>
   <div
-    className="sc-AxirZ ftBftl"
-    color="pink"
+    className="sc-AxirZ bOZNwc"
+    color="#40c9a2"
     data-testid="rewardsr3"
     draggable={true}
     onDragStart={[Function]}
@@ -180,8 +40,8 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     r3
   </div>
   <div
-    className="sc-AxirZ gbobWJ"
-    color="skyblue"
+    className="sc-AxirZ dlAjTo"
+    color="#2f9c95"
     data-testid="rewardsr4"
     draggable={true}
     onDragStart={[Function]}
@@ -189,8 +49,8 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     r4
   </div>
   <div
-    className="sc-AxirZ kdqvAf"
-    color="orange"
+    className="sc-AxirZ libgMC"
+    color="#bee3ea"
     data-testid="rewardsr5"
     draggable={true}
     onDragStart={[Function]}
@@ -198,16 +58,16 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     r5
   </div>
   <div
-    className="sc-AxhCb jdFgLp"
+    className="sc-AxhCb jFVYKg"
   >
     <h2
-      className="sc-AxiKw bAZauj"
+      className="sc-AxiKw eidAyk"
     >
       Categories
     </h2>
   </div>
   <div
-    className="sc-AxhUy gvbPeP rewards1"
+    className="sc-AxhUy cvQYZU rewards1"
     data-testid="c1Dropzone"
     onDragOver={[Function]}
     onDrop={[Function]}
@@ -215,55 +75,59 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     <span
       className="category"
     >
-      C1
+      c1
     </span>
   </div>
   <div
-    className="sc-AxhUy gJdJUc rewards1"
+    className="sc-AxhUy hxGMLf rewards1"
+    data-testid="c2Dropzone"
     onDragOver={[Function]}
     onDrop={[Function]}
   >
     <span
       className="category"
     >
-      C2
+      c2
     </span>
   </div>
   <div
-    className="sc-AxhUy bNsNvx rewards1"
+    className="sc-AxhUy iNmKoq rewards1"
+    data-testid="c3Dropzone"
     onDragOver={[Function]}
     onDrop={[Function]}
   >
     <span
       className="category"
     >
-      C3
+      c3
     </span>
   </div>
   <div
-    className="sc-AxhUy bsoZXO rewards1"
+    className="sc-AxhUy dqnlUN rewards1"
+    data-testid="c4Dropzone"
     onDragOver={[Function]}
     onDrop={[Function]}
   >
     <span
       className="category"
     >
-      C4
+      c4
     </span>
   </div>
   <div
-    className="sc-AxhUy jvVJML rewards1"
+    className="sc-AxhUy dpMtoM rewards1"
+    data-testid="c5Dropzone"
     onDragOver={[Function]}
     onDrop={[Function]}
   >
     <span
       className="category"
     >
-      C5
+      c5
     </span>
   </div>
   <div
-    className="sc-AxgMl dzbfqP"
+    className="sc-AxgMl gNoHzy"
     color="orange"
     data-testid="reward r5c1"
     draggable={true}
@@ -277,5 +141,8 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
       X
     </div>
   </div>
+  <div
+    className="sc-AxmLO hwYpmq"
+  />
 </div>
 `;
