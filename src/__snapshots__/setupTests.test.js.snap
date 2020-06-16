@@ -2,13 +2,18 @@
 
 exports[`Stored Rewards Render Correctly should render with given state 1`] = `
 <div
-  className="sc-AxjAm bhEZON"
+  className="sc-AxjAm jSCbZY"
 >
   <div
     className="sc-Axmtr zEjJq"
   />
   <h2
-    className="sc-AxiKw dMAqCs"
+    className="sc-AxiKw iscKmc"
+    style={
+      Object {
+        "borderBottom": "1px solid black",
+      }
+    }
   >
     Rewards
   </h2>
@@ -58,10 +63,10 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
     r5
   </div>
   <div
-    className="sc-AxhCb jFVYKg"
+    className="sc-AxhCb eVaKvQ"
   >
     <h2
-      className="sc-AxiKw jaxNuQ"
+      className="sc-AxiKw JZYIs"
     >
       Categories
     </h2>
@@ -144,5 +149,19 @@ exports[`Stored Rewards Render Correctly should render with given state 1`] = `
   <div
     className="sc-AxmLO eyIhGq"
   />
+  <div
+    style={
+      Object {
+        "gridArea": "resetbutton",
+        "paddingTop": "50px",
+      }
+    }
+  >
+    <button
+      onClick={[Function]}
+    >
+      Reset Local Storage
+    </button>
+  </div>
 </div>
 `;
