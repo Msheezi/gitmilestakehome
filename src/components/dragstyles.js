@@ -39,7 +39,8 @@ export const RewardBox = styled.div`
 export const Title = styled.h2`
   text-align: center;
   grid-area: ${(props)=> props.location};
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
+  margin: 20px auto;
   /* text-decoration: underline; */
   
 `;
@@ -47,6 +48,8 @@ export const Title = styled.h2`
 export const CategoriesContainer = styled.div`
    grid-column-start: 3 ;
    grid-column-end: 8;
+   border-bottom: 1px solid black;
+   margin-bottom: 10px;
    
 
 `

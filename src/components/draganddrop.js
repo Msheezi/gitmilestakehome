@@ -171,7 +171,7 @@ const colors = {
         return (
           <MainContainer>
             <SpacerDiv/>
-            <Title location={"rewardheader"}>Rewards</Title>
+            <Title style={{borderBottom: "1px solid black"}}location={"rewardheader"}>Rewards</Title>
             {styledrewards}
             <CategoriesContainer>
               <Title>Categories</Title>
