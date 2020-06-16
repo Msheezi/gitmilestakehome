@@ -57,10 +57,13 @@ const colors = {
 
         let id = ev.dataTransfer.getData("id")
         let key = ev.dataTransfer.getData("key") 
-        let myState = [...this.props.rewards]
-        let location = `${id}${cat}`
 
-        let updatedObj = myState.find(obj => obj.key === key)
+        
+        let location = `${id}${cat}`
+        let updatedObj = this.props.rewards.find(obj => {
+           return obj.key === key
+        })
+        console.log("key: ", key, "location: ", location, "UpdatedOBJ: ", updatedObj)
             
         /**
          * bug: while placing the same square in the same swin lane doesn't
@@ -69,19 +72,20 @@ const colors = {
          * do nothing else if key matches, do update else create obj
          */
 
-        if (updatedObj){
-          
+        if (updatedObj && updatedObj.location !== location){
+          // updatedObj.location = location
           this.props.movingReward(updatedObj, cat)
 
         } else if (!updatedObj) {
-                 const placedReward = {
-                   name: id,
-                   location: `${id}${cat}`,
-                   bgcolor: colors[id],
-                   key: key,
-                 };
-                 myState.push(placedReward);
-                 this.props.updateReward(placedReward);
+          
+          const placedReward = {
+            name: id,
+            location: location,
+            bgcolor: colors[id],
+            key: key,
+          };
+          
+          this.props.updateReward(placedReward);
                }
       
     }
@@ -187,8 +191,13 @@ const colors = {
             {drops}
             {placedReward}
             <VertDiv/>
-              <button style={{ gridArea:"resetbutton",
-                }} onClick={() => this.resetState()}>Reset Saved</button>
+              <div style={{
+                gridArea: "resetbutton",
+                paddingTop: "50px",
+              }} >
+
+              <button onClick={() => this.resetState()}>Reset Local Storage</button>
+            </div>
           </MainContainer>
           )
           ;

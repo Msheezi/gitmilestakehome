@@ -3,7 +3,7 @@ import {
     DELETE_REWARD, UPDATE_REWARD
 } from '../actions/rewardActions'
 
-import undoable from 'redux-undo'
+import undoable, {  } from 'redux-undo'
 
 const initialState =  {}
 
@@ -13,27 +13,24 @@ const RewardsReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_REWARD:
             newState = Object.assign({}, state)
-            // newState = state.concat([action.reward])
-            newState[action.key] = action.reward
+            
+            
+            newState[action.reward.key] = action.reward
             return newState
         case UPDATE_REWARD:
-            // newState = Object.assign({}, state)
-            const {name, bgcolor, key} = action.reward
-            newState = Object.assign({}, state)
-            newState[key] = action.reward
-            // newState = state.filter(obj => obj.key !== key) 
-            // newState.push({
-            //   name: name,
-            //   key: key,
-            //   location: `${name}${action.cat}`,
-            //   bgcolor: bgcolor
-            // });
+           
+            const {key}= action.reward
+            
+            
+            newState = {...state, ...state.key,[key]: {...action.reward}}
+            newState[key].location = `${action.reward.name}${action.cat}`
+            
             
             return newState
         case DELETE_REWARD:
             newState = Object.assign({}, state)
-            delete newState.key
-            // newState = state.filter(obj => obj.key!== action.key )
+            delete newState[action.key]
+           
             return newState
         case "RESET_STATE":
             return {}
