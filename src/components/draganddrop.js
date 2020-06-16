@@ -38,7 +38,7 @@ const colors = {
     }
 
     onDragStart(ev, id, key) {
-        console.log('dragstart:', id, 'key:', key);
+        // console.log('dragstart:', id, 'key:', key);
         
         ev.dataTransfer.setData("id", id)
         ev.dataTransfer.setData("key", key)
