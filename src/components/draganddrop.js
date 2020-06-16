@@ -63,7 +63,7 @@ const colors = {
         let updatedObj = this.props.rewards.find(obj => {
            return obj.key === key
         })
-        console.log("key: ", key, "location: ", location, "UpdatedOBJ: ", updatedObj)
+        // console.log("key: ", key, "location: ", location, "UpdatedOBJ: ", updatedObj)
             
         /**
          * bug: while placing the same square in the same swin lane doesn't
