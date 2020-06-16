@@ -1,5 +1,5 @@
 import React from 'react'
-import { updateReward, removeReward, movingReward} from '../actions/rewardActions'
+import { updateReward, removeReward, movingReward, clearState} from '../actions/rewardActions'
 import { connect } from "react-redux";
 
 import {
@@ -31,6 +31,7 @@ const colors = {
 }
 
  class DragAndDrop extends React.Component{
+      
 
     onDragOver(ev) {
         ev.preventDefault()
@@ -57,10 +58,10 @@ const colors = {
         let id = ev.dataTransfer.getData("id")
         let key = ev.dataTransfer.getData("key") 
         let myState = [...this.props.rewards]
-        
+        let location = `${id}${cat}`
 
-        let updatedObj = myState.find(obj => obj.key === key )
-        
+        let updatedObj = myState.find(obj => obj.key === key)
+            
         /**
          * bug: while placing the same square in the same swin lane doesn't
          * duplicate, it does fire a redux action
@@ -160,16 +161,22 @@ const colors = {
       } 
       return placedReward
     }
+
+
+   resetState(){
+     localStorage.clear()
+     this.props.clearState()
+   }
+
     render(){
 
-
-        let placedReward = this.renderPlacedRewards()
-        let styledrewards = this.renderRewards()
         
-        let drops = this.renderDropZones()
+          let placedReward = this.renderPlacedRewards()
+          let styledrewards = this.renderRewards()
+          let drops = this.renderDropZones()
+          return (
 
-        return (
-          <MainContainer>
+           <MainContainer>
             <SpacerDiv/>
             <Title style={{borderBottom: "1px solid black"}}location={"rewardheader"}>Rewards</Title>
             {styledrewards}
@@ -180,23 +187,30 @@ const colors = {
             {drops}
             {placedReward}
             <VertDiv/>
+              <button style={{ gridArea:"resetbutton",
+                }} onClick={() => this.resetState()}>Reset Saved</button>
           </MainContainer>
-        );
+          )
+          ;
 
     }
 }
 
 const msp = state => {
-  let rewards = Object.values(state.rewards.present)
+  const rewardState = state.rewards.present 
+  const keys = Object.keys(rewardState)
+  let rewards = keys.map(key => (rewardState[key]))
   return {
-    rewards: rewards
+    rewards: rewards, 
+    keys: keys
   }
 }
 
 const mdp = dispatch => ({
     updateReward: (reward) => dispatch(updateReward(reward)),
     removeReward: (key) => dispatch(removeReward(key)),
-  movingReward: (reward, cat) => dispatch(movingReward(reward, cat))
+  movingReward: (reward, cat) => dispatch(movingReward(reward, cat)),
+  clearState:() => dispatch(clearState()) 
 })
 
 export default connect(msp, mdp)(DragAndDrop)
