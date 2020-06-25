@@ -33,6 +33,9 @@ const RewardsReducer = (state = initialState, action) => {
       newState = Object.assign({}, action.state);
       //   console.log(action.state.rewards);
       return newState;
+      case "RESET_STATE":
+          newState = Object.assign({})
+          return newState
     // case "SAVE_STATE":
     //   return;
     // // return value for this.
